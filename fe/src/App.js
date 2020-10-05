@@ -1,14 +1,21 @@
-import React from 'react';
+import React, {useState} from 'react';
 import logo from './logo.svg';
 import './App.css';
 
+
 function App() {
+  const [ response, setResponse ] = useState('PLACEHOLDER');
+
+  fetch('/api')
+      .then(httpResponse => httpResponse.json())
+      .then(text => setResponse(text));
+
   return (
     <div className="App">
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
         <p>
-          Interior Design!!!
+          Interior Design!!! - { response }
         </p>
         <a
           className="App-link"

@@ -1,0 +1,38 @@
+.carousel-slider{
+
+    background: #cdc5b8;
+    height: 700px;
+    width: 100%;
+}
+
+.slide-image{
+
+    opacity: 0.5;
+    height: 700px;
+    max-width: 100%;
+
+}
+
+.container .btn{
+    position: absolute;
+    top: 50%;
+    left: 32%;
+    vertical-align: middle;
+    justify-content: center;
+
+}
+
+.container .header{
+    position: absolute;
+    top: 20%;
+    left: 15%;
+    text-align: center;
+    background-color: transparent;
+    font-size: 60px;
+    justify-content: center;
+}
+
+
+
+
+

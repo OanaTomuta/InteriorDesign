@@ -1,42 +1,35 @@
-import React, {useEffect, useState} from 'react';
-import logo from './logo.svg';
+import React from 'react';
 import './App.css';
-
+import Main from './pages/Main';
+import Rooms from './pages/AppointmentRooms';
+import Navbar from './components/navbar/Navbar';
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import { FooterContainer} from "./components/footer/FooterContainer";
+import BedroomOptions from "./pages/BedroomOptions";
+import BathroomOptions from "./pages/BathroomOptions";
+import AppointmentRooms from "./pages/AppointmentRooms";
 
 function App() {
-  const [ response, setResponse ] = useState('PLACEHOLDER');
-
-  useEffect(() => { //conditie de a nu repeta randarea
-    (async () => fetch('/appointments')
-        .then(httpResponse => httpResponse.json())
-        .then(text => setResponse(text)))();
-  }, []); //astea sunt conditiile pt a nu se repeta
-
-  console.log(response);
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        {
-          Array.isArray(response) ?
-          response.map( (element) => {
-              return (
-                  <p>
-                    {element.first_name},
-                    {element.last_name}
-                  </p>
-              )
-          }) : '' //else leave empty
-        }
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+        <Router>
+            <Navbar />
+            <Switch>
+                <Route path={'/appointment/rooms'}>
+                    <AppointmentRooms />
+                </Route>
+                <Route path={'/'} >
+                    <Main />
+                </Route>
+                <Route path={'/appointment/rooms/bedroomOptions'}>
+                    <BedroomOptions />
+                </Route>
+                <Route path={'/appointment/rooms/bathroomOptions'}>
+                    <BathroomOptions />
+                </Route>
+            </Switch>
+        </Router>
+        <FooterContainer/>
     </div>
   );
 }

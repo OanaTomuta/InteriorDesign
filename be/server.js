@@ -9,7 +9,7 @@ app.get('/api', (req, res) => {
 
 });
 
-app.get('/appointments', async (req, res) => {
+app.get('/api/appointments', async (req, res) => {
     res.json(await appointments.loadAppointments());
 })
 

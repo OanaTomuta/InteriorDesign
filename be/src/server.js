@@ -4,15 +4,23 @@ const appointments = require('./appointments');
 
 const port = 4000;
 
+app.use(express.json());
+
 app.get('/api', (req, res) => {
     res.json('Hello');
 
 });
 
 app.get('/api/appointments', async (req, res) => {
-    res.json(await appointments.loadAppointments());
+    res.json(await appointments.loadAppointment());
+})
+
+app.post('/api/appointments', async (req,res) => {
+    console.log(req.body);
+    res.json(await appointments.createAppointment(req.body));
 })
 
 app.listen(port, () => {
     console.log(`Oana's server running on port ${port}`);
 })
+

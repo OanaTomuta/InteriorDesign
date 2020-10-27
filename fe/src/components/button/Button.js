@@ -12,7 +12,8 @@ export const Button = ({
                            type,
                            onClick,
                            buttonStyle,
-                           buttonSize
+                           buttonSize,
+    hidden
 }) => {
 
     const checkButtonStyle = STYLES.includes(buttonStyle) ? buttonStyle : STYLES[0];
@@ -24,6 +25,7 @@ export const Button = ({
                 className={`btn ${checkButtonStyle} ${checkButtonSize}`}
                 onClick={onClick}
                 type={type}
+                hidden={hidden}
             >
                 {children}
             </button>

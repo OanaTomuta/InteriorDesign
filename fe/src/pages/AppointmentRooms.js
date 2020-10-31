@@ -1,9 +1,9 @@
 import React, {useState} from "react";
-import Cards from "../components/cards/Cards";
+import SelectRoomCards from "../components/cards/SelectRoomCards";
 import {Button} from "../components/button/Button";
 import './AppointmentRooms.css'
 import AppointmentForm from "./AppointmentForm";
-import SelectedRoomOptions from "./SelectedRoomOptions";
+import SelectStyleCards from "../components/cards/SelectStyleCards";
 
 export default function AppointmentRooms(){
 
@@ -15,13 +15,13 @@ export default function AppointmentRooms(){
     const [isCardsSelected, setIsCardsSelected] = useState(false) //flag daca s-a trecut de selectarea de cards
 
     const buildStepsFromCards = cards => {
-        return cards.map(card => (<SelectedRoomOptions name={card}/>))
+        return cards.map(card => (<SelectStyleCards name={card}/>))
         //fiecare card selectat este transformat intr-o componenta
     }
 
     return(
         <>
-            {!isCardsSelected ? (<Cards onChange={setCards}/>) : steps[curr]}
+            {!isCardsSelected ? (<SelectRoomCards onChange={setCards}/>) : steps[curr]}
             {/*daca nu s-au selectat inca rooms (primul pas), se afiseaza selectia
                de camere ( cards cu numele de camere), altfel, continua pe ce camere au fost selectate deja*/}
             <Button
@@ -35,6 +35,8 @@ export default function AppointmentRooms(){
                                                                 //adaugam noii pasi creati cu buildStepsFromCards
                         setIsCardsSelected(true) //flag ca am trecut de partea de ales camere
                     } else {
+                        //salveaza imaginile
+
                         setCurr(curr + 1); //dupa ce s-a trecut de selectarea camerelor, ramane pe branch-ul asta
                     }                           //care merge pe fiecare pagina selectata anterior
                 }}

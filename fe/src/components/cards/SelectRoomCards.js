@@ -3,7 +3,7 @@ import CardItem from './CardItem';
 import './Cards.css';
 import {Button} from "../button/Button";
 
-function Cards({onChange}) {
+function SelectRoomCards({onChange}) {
 
     const [rooms, setRooms] = useState([]);
     const onClick = (room) => {
@@ -62,4 +62,4 @@ function Cards({onChange}) {
 
 }
 
-export default Cards;
+export default SelectRoomCards;

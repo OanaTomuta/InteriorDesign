@@ -7,7 +7,7 @@ import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import { FooterContainer} from "./components/footer/FooterContainer";
 import AppointmentRooms from "./pages/AppointmentRooms";
 import AppointmentForm from "./pages/AppointmentForm";
-import SelectedRoomOptions from "./pages/SelectedRoomOptions";
+import Form from "./components/form/Form";
 
 
 function App() {
@@ -16,8 +16,8 @@ function App() {
         <Router>
             <Navbar />
             <Switch>
-                <Route path={'/appointment/rooms/bathroomOptions'}>
-                    <SelectedRoomOptions />
+                <Route path={'/admin-login'}>
+                    <Form />
                 </Route>
                 <Route path={'/appointment/rooms'}>
                     <AppointmentRooms />

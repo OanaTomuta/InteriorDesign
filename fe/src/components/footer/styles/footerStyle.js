@@ -13,7 +13,7 @@ export const Wrapper  = styled.div`
     max-width: 1000px;
     margin: 0 auto;
     background: #323e1a;
-    margin-left: 230px;
+    
 `
 
 export const Column = styled.div`

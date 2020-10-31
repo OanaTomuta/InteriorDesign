@@ -22,8 +22,12 @@ export function FooterContainer(){
                         <Footer.Link href="#"><Icon className={"fab fa-instagram"}/>Instagram</Footer.Link>
                         <Footer.Link href="#"><Icon className={"fab fa-facebook-square"}/>Facebook</Footer.Link>
                     </Footer.Column>
+                    <Footer.Column>
+                        <Footer.Title>Administration</Footer.Title>
+                        <Footer.Link><Icon className={"fab fa-instagram"}/>Admin Login</Footer.Link>
+                    </Footer.Column>
                 </Footer.Row>
             </Footer.Wrapper>
         </Footer>
-    )
+    );
 }

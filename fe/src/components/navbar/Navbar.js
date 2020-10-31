@@ -2,6 +2,7 @@ import { CgCollage } from 'react-icons/cg'
 import './Navbar.css';
 import React from "react";
 import { Link } from "react-router-dom";
+import {Button} from "../button/Button";
 const {Component} = require("react");
 
 

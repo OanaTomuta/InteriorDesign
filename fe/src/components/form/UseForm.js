@@ -6,7 +6,8 @@ const useForm = (callBack, validate) => {
         firstName: '',
         lastName: '',
         email: '',
-        phone: ''
+        phone: '',
+        preferences: {}
     });
 
     const [errors, setErrors] = useState({});
@@ -40,7 +41,7 @@ const useForm = (callBack, validate) => {
         [errors]
     );
 
-    return{ handleChange, handleRequestButton, values, errors };
+    return{ handleChange, handleRequestButton, values, errors, setValues };
 }
 
 export default useForm;

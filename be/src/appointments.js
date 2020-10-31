@@ -9,10 +9,16 @@ async function loadAppointment(){
 }
 
 async function createAppointment(appointmentData){
-    const result = await pool.query(`insert into appointments(first_name,last_name,email,phone_no) values($1,$2,$3,$4)`,
-        [appointmentData.firstName,appointmentData.lastName,appointmentData.email,appointmentData.phone]);
+    console.log(appointmentData);
+    const result = await pool.query(`insert into appointments(first_name,last_name,email,phone_no,preferences) values($1, $2, $3, $4, $5)`,
+        [
+            appointmentData.firstName,
+            appointmentData.lastName,
+            appointmentData.email,
+            appointmentData.phone,
+            appointmentData.preferences
+        ]);
     return result.rows;
-
 }
 
 module.exports = {

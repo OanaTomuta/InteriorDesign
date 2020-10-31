@@ -3,7 +3,7 @@ import Form from "../components/form/Form";
 import FormSuccess from "../components/form/FormSuccess";
 
 
-const AppointmentForm = () => {
+const AppointmentForm = ({preferences}) => {
 
     const [isSubmitted, setIsSubmitted] = useState(false);
 
@@ -11,6 +11,7 @@ const AppointmentForm = () => {
         setIsSubmitted(true);
     }
 
+    console.log(preferences)
     return(
         <>
         <div className={"form-container"}>
@@ -18,7 +19,7 @@ const AppointmentForm = () => {
             {/*} <div className='form-content-left'>
                 <img className='form-img' src='/rooms-page-images/bedroom.jpg' alt='spaceship' />
             </div>*/}
-             {!isSubmitted ? (<Form submitForm={submitForm}/>) : (<FormSuccess />)}
+             {!isSubmitted ? (<Form submitForm={submitForm} payload={preferences}/>) : (<FormSuccess />)}
 
         </div>
         </>

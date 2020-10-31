@@ -17,10 +17,9 @@ function SelectRoomCards({onChange}) {
         } else {
             newRooms = [...rooms, room]; //creeaza un nou array cu elem din rooms, spread operator
         }
-        setRooms(newRooms)
+        setRooms(newRooms);
         onChange(newRooms); //functia in care se modifica setCards din AppointmentRooms
-    }
-    console.log(rooms);
+    };
 
     return (
         <div className={"cards"}>

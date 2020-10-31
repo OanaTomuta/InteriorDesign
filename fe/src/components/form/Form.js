@@ -1,11 +1,15 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import useForm from "./UseForm";
 import './Form.css';
 import validate from "./FormValidation";
 
-const Form = ({submitForm}) => {
+const Form = ({submitForm, payload}) => {
 
-    const{ handleChange, handleRequestButton, values, errors } = useForm(submitForm, validate);
+    const{ handleChange, handleRequestButton, values, errors, setValues } = useForm(submitForm, validate);
+
+    useEffect(() => {
+        setValues(Object.assign({}, values, { preferences: payload }))
+    }, [ payload ]);
 
     return(
         <div >

@@ -7,21 +7,36 @@ import SelectStyleCards from "../components/cards/SelectStyleCards";
 
 export default function AppointmentRooms(){
 
-    const [steps, setSteps] = useState([
-        <AppointmentForm/> //initial state daca nu selectez nimic de pe cards
-    ])
+    // const [steps, setSteps] = useState([
+    //      //initial state daca nu selectez nimic de pe cards
+    // ]);
     const [curr,setCurr] = useState(0); //indicele pasului de pe cards
     const [cards, setCards] = useState([]); //numele cardului selectat
-    const [isCardsSelected, setIsCardsSelected] = useState(false) //flag daca s-a trecut de selectarea de cards
+    const [isCardsSelected, setIsCardsSelected] = useState(false); //flag daca s-a trecut de selectarea de cards
+    const [preferences, setPreferences] = useState({});
 
-    const buildStepsFromCards = cards => {
-        return cards.map(card => (<SelectStyleCards name={card}/>))
-        //fiecare card selectat este transformat intr-o componenta
-    }
+    const addPreferences = (prefs, room) => setPreferences(Object.assign({}, preferences, { [room]: prefs }));
 
-    return(
+    // const buildStepsFromCards = ( cards ) => {
+    //     return cards.map(card => (<SelectStyleCards name={card} addPreferences={addPreferences} />))
+    //     //fiecare card selectat este transformat intr-o componenta
+    // };
+
+    const renderCards = () => {
+      if(!isCardsSelected){
+        return (<SelectRoomCards onChange={setCards}/>)
+      } else if(curr <= cards.length-1) {
+        return (<SelectStyleCards name={cards[curr]} addPreferences={addPreferences} />)
+      } else if(curr !== 0 && curr > cards.length-1) {
+        return (<AppointmentForm name={'appointmentForm'} preferences={preferences}/>)
+      }
+    };
+
+    console.log(`prefrences: `, preferences);
+
+        return(
         <>
-            {!isCardsSelected ? (<SelectRoomCards onChange={setCards}/>) : steps[curr]}
+          {renderCards()}
             {/*daca nu s-au selectat inca rooms (primul pas), se afiseaza selectia
                de camere ( cards cu numele de camere), altfel, continua pe ce camere au fost selectate deja*/}
             <Button
@@ -30,8 +45,8 @@ export default function AppointmentRooms(){
                 onClick={() => {
                     if (!isCardsSelected) {
                         //console.log(cards)
-                        const newSteps = buildStepsFromCards(cards) //functie pentru butonul de "Next Step"
-                        setSteps([...newSteps, ...steps]) //la pasii deja existenti (AppointmentForm),
+                        // const newSteps = buildStepsFromCards(cards); //functie pentru butonul de "Next Step"
+                        // setSteps([...newSteps, ...steps]); //la pasii deja existenti (AppointmentForm),
                                                                 //adaugam noii pasi creati cu buildStepsFromCards
                         setIsCardsSelected(true) //flag ca am trecut de partea de ales camere
                     } else {
@@ -41,7 +56,7 @@ export default function AppointmentRooms(){
                     }                           //care merge pe fiecare pagina selectata anterior
                 }}
                 // conditie pentru a nu mai arata butonul de Next Step cand s-a ajuns la ultimul pas
-                hidden={isCardsSelected && curr >= steps.length-1}
+                hidden={isCardsSelected && curr > cards.length-1}
             >
             Next Step
             </Button>

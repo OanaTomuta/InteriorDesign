@@ -1,0 +1,40 @@
+import {LANGUAGES} from "../Languages";
+
+export default {
+    [LANGUAGES.ROMANIAN]: {
+        'Make an Appointment':'Stabileste o Sedinta',
+        'main-header-message':'Bine ati venit la InHouse Interior Design',
+        'next-step-button': 'Pasul Urmator',
+        'select-room-header':'Va rugam sa selectati camerele pe care ati dori sa le amenajati.',
+        'form-header':'Va rugam sa completati formularul de mai jos pentru a finaliza cererea.',
+        'form-first-name':'Prenume',
+        'form-last-name':'Nume',
+        'form-phone':'Telefon',
+        'request-button':'Trimite Cererea',
+        'en-button':'Engleza',
+        'ro-button':'Romana',
+        'username':'Username',
+        'password':'Parola',
+        'log-in':'Logheaza-te',
+        'admin-login-header':'Introduceti credentialele',
+        'admin-page-header':'Admin logat cu succes',
+        'config-rooms':'Configureaza Camerele',
+        'config-styles':'Configureaza Stilurile',
+        'back-button':'Inapoi',
+        'add-room':'Adauga o camera',
+        'edit-room':'Editeaza o camera',
+        'delete-room':'Sterge o camera',
+        'submit-change':'Salveaza modificarile',
+        'add-img':'Adauga o Imagine',
+        'add-room-placeholder':'Introduceti Numele Camerei',
+        'change-img':'Schimbati Imaginea',
+        'add-style':'Adauga un stil',
+        'edit-style':'Editeaza un stil',
+        'delete-style':'Sterge un stil',
+        'select-room':'Selecteaza o camera',
+        'select-style':'Selecteaza un stil',
+        'about-us':'Despre Noi',
+        'contact-us':'Contacteaza-ne',
+        'social':'Retele de Socializare'
+    }
+}

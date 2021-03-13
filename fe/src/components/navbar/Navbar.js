@@ -1,24 +1,39 @@
 import { CgCollage } from 'react-icons/cg'
 import './Navbar.css';
-import React from "react";
+import React, {useState} from "react";
 import { Link } from "react-router-dom";
-import {Button} from "../button/Button";
+import {I18Provider, LANGUAGES} from "../i18n";
+import translate from "../i18n/translate";
 const {Component} = require("react");
 
 
-class Navbar extends Component{
-    render() {
-        return(
-            <div className={"navbar"}>
-                <div className={"navbar-container"}>
-                    <Link to='/' className={"navbar-logo"}>
-                        <CgCollage className={"navbar-icon"}/>
-                            InHouse
-                    </Link>
-                </div>
-            </div>
-        );
-    }
-}
+export default function Navbar({locale, setLocale}){
 
-export default Navbar;
+        return(
+            <I18Provider locale={locale}>
+                <div className={"navbar"}>
+                    <div className={"navbar-container"}>
+                        <Link to='/' className={"navbar-logo"}>
+                            <CgCollage className={"navbar-icon"}/>
+                                InHouse
+                        </Link>
+
+                            <button
+                                className={"language-button"}
+                                onClick={() => setLocale(LANGUAGES.ENGLISH)}
+                            >
+                                {translate('en-button')}
+                            </button>
+                            <button
+                                className={"language-button"}
+                                onClick={() => setLocale(LANGUAGES.ROMANIAN)}
+                            >
+                                {translate('ro-button')}
+                            </button>
+
+                    </div>
+                </div>
+            </I18Provider>
+        );
+
+}

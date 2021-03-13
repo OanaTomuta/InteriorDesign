@@ -39,3 +39,11 @@
     height: 30px;
 }
 
+.language-button{
+    margin-left: 20px;
+    background-color: #323e1a;
+    color: #efe8d8;
+    outline: none;
+    border: none;
+    cursor: pointer;
+}

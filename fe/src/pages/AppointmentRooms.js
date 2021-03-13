@@ -4,8 +4,10 @@ import {Button} from "../components/button/Button";
 import './AppointmentRooms.css'
 import AppointmentForm from "./AppointmentForm";
 import SelectStyleCards from "../components/cards/SelectStyleCards";
+import {I18Provider} from "../components/i18n";
+import translate from "../components/i18n/translate";
 
-export default function AppointmentRooms(){
+export default function AppointmentRooms({locale}){
 
     // const [steps, setSteps] = useState([
     //      //initial state daca nu selectez nimic de pe cards
@@ -15,7 +17,12 @@ export default function AppointmentRooms(){
     const [isCardsSelected, setIsCardsSelected] = useState(false); //flag daca s-a trecut de selectarea de cards
     const [preferences, setPreferences] = useState({});
 
-    const addPreferences = (prefs, room) => setPreferences(Object.assign({}, preferences, { [room]: prefs }));
+    const addPreferences = (prefs, room) => {
+        const newPreferences = { ...preferences };
+        newPreferences[room] = prefs;
+        setPreferences(newPreferences);
+            // Object.assign({}, preferences, {[room]: prefs})
+    };
 
     // const buildStepsFromCards = ( cards ) => {
     //     return cards.map(card => (<SelectStyleCards name={card} addPreferences={addPreferences} />))
@@ -24,11 +31,11 @@ export default function AppointmentRooms(){
 
     const renderCards = () => {
       if(!isCardsSelected){
-        return (<SelectRoomCards onChange={setCards}/>)
+        return (<SelectRoomCards onChange={setCards} locale={locale}/>) //apar room cards
       } else if(curr <= cards.length-1) {
-        return (<SelectStyleCards name={cards[curr]} addPreferences={addPreferences} />)
-      } else if(curr !== 0 && curr > cards.length-1) {
-        return (<AppointmentForm name={'appointmentForm'} preferences={preferences}/>)
+        return (<SelectStyleCards name={cards[curr].name} id={cards[curr].id} addPreferences={addPreferences}  locale={locale} />)
+      } else if(curr === 0 || curr > cards.length-1) {
+        return (<AppointmentForm name={'appointmentForm'} preferences={preferences}  locale={locale}/>)
       }
     };
 
@@ -39,27 +46,29 @@ export default function AppointmentRooms(){
           {renderCards()}
             {/*daca nu s-au selectat inca rooms (primul pas), se afiseaza selectia
                de camere ( cards cu numele de camere), altfel, continua pe ce camere au fost selectate deja*/}
-            <Button
-                className={'btn'}
-                buttonSize={'btn--medium'}
-                onClick={() => {
-                    if (!isCardsSelected) {
-                        //console.log(cards)
-                        // const newSteps = buildStepsFromCards(cards); //functie pentru butonul de "Next Step"
-                        // setSteps([...newSteps, ...steps]); //la pasii deja existenti (AppointmentForm),
-                                                                //adaugam noii pasi creati cu buildStepsFromCards
-                        setIsCardsSelected(true) //flag ca am trecut de partea de ales camere
-                    } else {
-                        //salveaza imaginile
+            <I18Provider locale={locale}>
+                <Button
+                    className={'btn'}
+                    buttonSize={'btn--medium'}
+                    onClick={() => {
+                        if (!isCardsSelected) {
+                            //console.log(cards)
+                            // const newSteps = buildStepsFromCards(cards); //functie pentru butonul de "Next Step"
+                            // setSteps([...newSteps, ...steps]); //la pasii deja existenti (AppointmentForm),
+                                                                    //adaugam noii pasi creati cu buildStepsFromCards
+                            setIsCardsSelected(true) //flag ca am trecut de partea de ales camere
+                        } else {
+                            //salveaza imaginile
 
-                        setCurr(curr + 1); //dupa ce s-a trecut de selectarea camerelor, ramane pe branch-ul asta
-                    }                           //care merge pe fiecare pagina selectata anterior
-                }}
-                // conditie pentru a nu mai arata butonul de Next Step cand s-a ajuns la ultimul pas
-                hidden={isCardsSelected && curr > cards.length-1}
-            >
-            Next Step
-            </Button>
+                            setCurr(curr + 1); //dupa ce s-a trecut de selectarea camerelor, ramane pe branch-ul asta
+                        }                           //care merge pe fiecare pagina selectata anterior
+                    }}
+                    // conditie pentru a nu mai arata butonul de Next Step cand s-a ajuns la ultimul pas
+                    hidden={isCardsSelected && curr > cards.length-1}
+                >
+                    {translate('next-step-button')}
+                </Button>
+            </I18Provider>
         </>
     );
 

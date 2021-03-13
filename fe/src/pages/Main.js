@@ -2,7 +2,7 @@ import React, {useEffect, useState} from "react";
 import Carousel from "../components/carousel/Carousel";
 import { fetchForm } from "../utils/apiClient";
 
-export default function Main(){
+export default function Main({locale}){
     const [ response, setResponse ] = useState('PLACEHOLDER');
 
     useEffect(() => { //conditie de a nu repeta randarea
@@ -29,7 +29,7 @@ export default function Main(){
             }
             */}
 
-            <Carousel/>
+            <Carousel locale={locale}/>
 
         </div>
     )

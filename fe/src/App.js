@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import './App.css';
 import Main from './pages/Main';
 import Rooms from './pages/AppointmentRooms';
@@ -8,30 +8,45 @@ import { FooterContainer} from "./components/footer/FooterContainer";
 import AppointmentRooms from "./pages/AppointmentRooms";
 import AppointmentForm from "./pages/AppointmentForm";
 import Form from "./components/form/Form";
-
+import AdminLoginForm from "./pages/AdminLoginForm";
+import AdminRoomConfig from "./pages/AdminRoomConfig";
+import AdminStyleConfig from "./pages/AdminStyleConfig";
+import AdminPage from "./pages/AdminPage";
+import {LANGUAGES} from "./components/i18n";
 
 function App() {
+
+    const [locale, setLocale] = useState(LANGUAGES.ENGLISH);
   return (
     <div className="App">
         <Router>
-            <Navbar />
+            <Navbar locale={locale} setLocale={setLocale}/>
+
             <Switch>
+                <Route path={'/admin/config/rooms'}>
+                    <AdminRoomConfig locale={locale}/>
+                </Route>
+                <Route path={'/admin/config/styles'}>
+                    <AdminStyleConfig locale={locale}/>
+                </Route>
+                <Route path={'/admin/config'}>
+                    <AdminPage locale={locale}/>
+                </Route>
                 <Route path={'/admin-login'}>
-                    <Form />
+                    <AdminLoginForm locale={locale}/>
                 </Route>
                 <Route path={'/appointment/rooms'}>
-                    <AppointmentRooms />
+                    <AppointmentRooms locale={locale} />
                 </Route>
                 <Route path={'/appointment/form'}>
-                    <AppointmentForm />
+                    <AppointmentForm locale={locale} />
                 </Route>
                 <Route path={'/'} >
-                    <Main />
+                    <Main locale={locale} />
                 </Route>
-
             </Switch>
         </Router>
-        <FooterContainer/>
+        <FooterContainer locale={locale}/>
     </div>
   );
 }

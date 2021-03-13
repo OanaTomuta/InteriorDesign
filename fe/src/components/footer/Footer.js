@@ -1,26 +1,26 @@
 import React from "react";
 import { Container, Wrapper, Row, Column, Link, Title} from './styles/footerStyle';
 
-export default function Footer({children,...restProps}){
+export default function Footer({children, locale,...restProps}){
     return <Container {...restProps}>{children}</Container>
 }
 
-Footer.Wrapper = function FooterWrapper({children,...restProps}){
-    return <Wrapper {...restProps}>{children}</Wrapper>
+Footer.Wrapper = function FooterWrapper({children, locale,...restProps}){
+    return <Wrapper {...restProps} locale={locale}>{children}</Wrapper>
 }
 
-Footer.Row = function FooterRow({children,...restProps}){
-    return <Row {...restProps}>{children}</Row>
+Footer.Row = function FooterRow({children, locale,...restProps}){
+    return <Row {...restProps} locale={locale}>{children}</Row>
 }
 
-Footer.Column = function FooterColumn({children,...restProps}){
-    return <Column {...restProps}>{children}</Column>
+Footer.Column = function FooterColumn({children, locale,...restProps}){
+    return <Column {...restProps} locale={locale}>{children}</Column>
 }
 
-Footer.Link = function FooterLink({children,...restProps}){
-    return <Link {...restProps}>{children}</Link>
+Footer.Link = function FooterLink({children, locale,...restProps}){
+    return <Link {...restProps} locale={locale}>{children}</Link>
 }
 
-Footer.Title = function FooterTitle({children,...restProps}){
-    return <Title {...restProps}>{children}</Title>
+Footer.Title = function FooterTitle({children, locale,...restProps}){
+    return <Title {...restProps} locale={locale}>{children}</Title>
 }

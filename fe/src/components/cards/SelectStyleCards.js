@@ -1,16 +1,42 @@
 import React, {useEffect, useState} from "react";
 import CardItem from './CardItem';
 import './Cards.css';
+import {fetchStyles} from "../../utils/apiClient";
 
 
-function SelectStyleCards({ name, addPreferences }){
+function SelectStyleCards({ name, id, addPreferences }){
 
+    //console.log({name},id);
     const [selected, setSelected] = useState([]);
 
     useEffect(() => {
       setSelected([])
-    }, [ name ]);
+    }, [name]);
 
+    const [styles, setStyles] = useState([]);
+
+    const refreshStyles = async (id) => {
+
+        const result = await fetchStyles(id);
+
+        console.log(result)
+
+        const data = result.map( r => ({
+            style_id : r.style_id,
+            style_name : r.style_name,
+            image_id: r.image_id
+        }));
+
+
+        setStyles(data);
+    }
+
+    useEffect( () =>{
+        refreshStyles(id).catch(err => console.log(err));
+        setSelected([]);
+    },[name]);
+
+    console.log(styles)
     const onClick = (preference, isSelected) => {
         let newSelected = [];
         if (!isSelected) {
@@ -26,6 +52,7 @@ function SelectStyleCards({ name, addPreferences }){
       addPreferences(newSelected, name);
     };
 
+    console.log()
     // selectedStyles.push(preferences);
 
     return(
@@ -34,9 +61,20 @@ function SelectStyleCards({ name, addPreferences }){
                 <div className={"cards"}>
                     <h1>Please select the styles you like</h1>
                     <div className={"cards-container"}>
-                        <div className={"cards-wrapper"}>
+                        <div className={"style-cards-wrapper"}>
                             <ul className={"cards-items"}>
-                                <CardItem
+                                {
+                                    styles.map( (styleCard, idx) => (
+                                        <CardItem
+                                            src={`/load-image?img_id=${styleCard.image_id}`}
+                                            text={styleCard.style_name}
+                                            id={styleCard.style_id}
+                                            onClick={onClick}
+                                            selected={() => !!selected.find(sel => sel.id === styleCard.style_id)}
+                                        />
+                                    ))
+                                }
+                                {/*<CardItem
                                     src={"/rooms-page-images/kitchen.jpg"}
                                     text={"1"}
                                     type={{name}}
@@ -53,6 +91,7 @@ function SelectStyleCards({ name, addPreferences }){
                                 <CardItem
                                     src={"/rooms-page-images/livingroom.jpg"}
                                     text={"3"}
+                                    type={{name}}
                                     onClick={onClick}
                                     selected={() => !!selected.find(sel => sel === '3')}
                                 />
@@ -89,9 +128,10 @@ function SelectStyleCards({ name, addPreferences }){
                                 <CardItem
                                     src={"/rooms-page-images/livingroom.jpg"}
                                     text={"8"}
+                                    type={{name}}
                                     onClick={onClick}
                                     selected={() => !!selected.find(sel => sel === '8')}
-                                />
+                                />*/}
                             </ul>
                         </div>
                     </div>

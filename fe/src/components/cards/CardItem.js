@@ -17,7 +17,7 @@ export default function CardItem(props){
 
     const selectCard = () =>{
         setSelected(!selected);
-        props.onClick(props.text, !selected);
+        props.onClick({name: props.text, id:props.id}, !selected);
     };
 
         return (

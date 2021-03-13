@@ -6,7 +6,7 @@ const FormSuccess = () => {
     return(
         <div className={"form-content"}>
             <div className={"form-success"}>
-                We have received your request! You will be contacted by email shortly!
+                We have received your request!
             </div>
         </div>
     )

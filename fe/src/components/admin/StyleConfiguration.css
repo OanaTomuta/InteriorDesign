@@ -1,0 +1,69 @@
+.page-container{
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+    max-width: 1120px;
+    width: 100%;
+    margin: 0 auto;
+    padding: 4rem;
+    height: 455px;
+
+}
+
+.container {
+    display: flex;
+    flex: 1;
+    margin: 0 1rem;
+    border-radius: 10px;
+}
+
+.wrapper {
+    position: relative;
+    margin: 60px 0 60px;
+}
+
+.button-columns{
+    columns: 3;
+    margin: auto;
+}
+
+.column-item{
+    display: flex;
+    flex-flow: column;
+    width: 100%;
+    box-shadow: 0 6px 20px rgb(129, 127, 124);
+    -webkit-filter: drop-shadow(0 6px 20px rgba(56, 125, 255, 0.017));
+    filter: drop-shadow(0 6px 20px rgba(56, 125, 255, 0.017));
+    border-radius: 10px;
+    overflow: hidden;
+    text-decoration: none;
+}
+
+.button{
+    padding: 8px 20px;
+    font-size: 17px;
+    cursor: pointer;
+    border-radius: 12px;
+    margin: 20px;
+    background-color: #9b8f8a;
+    border: 1px solid #9b8f8a ;
+    box-shadow: 0 5px 8px 0 rgba(0, 0, 0, 0.2), 0 7px 20px 0 rgba(0, 0, 0, 0.2);
+    color: black;
+}
+
+.button:hover{
+    background: #323e1a;
+    border: 1px solid #323e1a ;
+    color: #d4c9c6;
+    transition: all 0.3s ease-out;
+}
+
+.config-logo{
+
+    color: #efe8d8;
+    width: 50px;
+    height: 50px;
+    position:relative;
+    margin-left: 38%;
+    top: 10px;
+}
